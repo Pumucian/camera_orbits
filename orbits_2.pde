@@ -35,7 +35,7 @@ void initShipPosition(){
   cameraVertTilt = 27;
   upYSign = 1;
   upY = 1;
-  inverter = 1;
+  //inverter = 1;
 }
 
 void keyPressed(){
@@ -116,9 +116,11 @@ void shipCoords(){
   cameraVertTilt += shipVertRotation; //needed in case there is rotation outside 3rd person camera
   shipAngle += shipRotation;
   shipVertAngle += shipVertRotation;
-  shipX = shipX + speedX * cos(radians(shipAngle)) + speedZ * sin(radians(shipAngle)) * cos(radians(shipVertAngle)) + speedY * sin(radians(shipVertAngle)) * sin(radians(shipAngle));
+  shipX = shipX + speedX * cos(radians(shipAngle)) + speedZ * sin(radians(shipAngle)) * cos(radians(shipVertAngle))
+  + speedY * sin(radians(shipVertAngle)) * sin(radians(shipAngle));
   shipY = shipY + speedY * cos(radians(shipVertAngle)) - speedZ * sin(radians(shipVertAngle));
-  shipZ = shipZ - speedX * sin(radians(shipAngle)) + speedZ * cos(radians(shipAngle)) * cos(radians(shipVertAngle)) + speedY * sin(radians(shipVertAngle)) * cos(radians(shipAngle));
+  shipZ = shipZ - speedX * sin(radians(shipAngle)) + speedZ * cos(radians(shipAngle)) * cos(radians(shipVertAngle))
+  + speedY * sin(radians(shipVertAngle)) * cos(radians(shipAngle));
   translate(shipX, shipY, shipZ);
   rotateY(radians(shipAngle));
   rotateX(radians(shipVertAngle));
@@ -139,7 +141,6 @@ void setShipCamera(){
     upY = round(1 * (cos(radians(cameraVertTilt))/abs(cos(radians(cameraVertTilt)))));
     camera(cameraX, cameraY, cameraZ, width/2 + shipX, height/2 + shipY, shipZ, 0, upY, 0);
   }
-  println(shipVertAngle);
 }
 
 void setControlsText(){
